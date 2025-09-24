@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-body text-center">
+      <h2 class="mb-3">Nombre: <span class="text-primary">{{ nombreSignal() }}</span></h2>
+      <h2 class="mb-3">Edad: <span class="text-success">{{ edadSignal() }}</span></h2>
+      <h2 class="mb-3">Nombre capitalizado: <span class="text-warning">{{ nombreCapitalizadoSignal() }}</span></h2>
+
+      <div class="d-flex justify-content-center gap-3 mt-4">
+        <button class="btn btn-primary" (click)="abrirModal('nombre')">Cambiar nombre</button>
+        <button class="btn btn-success" (click)="abrirModal('edad')">Cambiar edad</button>
+        <button class="btn btn-danger" (click)="abrirModal('reset')">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div *ngIf="mostrarModal" class="modal fade show d-block" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content shadow">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            {{ tipoModal === 'nombre' ? 'Cambiar Nombre' : '' }}
+            {{ tipoModal === 'edad' ? 'Cambiar Edad' : '' }}
+            {{ tipoModal === 'reset' ? 'Resetear Nombre Capitalizado' : '' }}
+          </h5>
+          <button type="button" class="btn-close" (click)="cerrarModal()"></button>
+        </div>
+        <div class="modal-body">
+          <input
+            *ngIf="tipoModal === 'nombre'"
+            [(ngModel)]="nuevoNombre"
+            placeholder="Escribe un nuevo nombre"
+            class="form-control"
+          />
+
+          <input
+            *ngIf="tipoModal === 'edad'"
+            type="number"
+            [(ngModel)]="nuevaEdad"
+            placeholder="Escribe una nueva edad"
+            class="form-control"
+          />
+
+          <input
+            *ngIf="tipoModal === 'reset'"
+            [(ngModel)]="nuevoNombreCapitalizado"
+            placeholder="Escribe un nombre capitalizado"
+            class="form-control"
+          />
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+          <button class="btn btn-primary" (click)="guardar()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fondo oscuro del modal -->
+  <div *ngIf="mostrarModal" class="modal-backdrop fade show"></div>
+</div>
