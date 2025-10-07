@@ -1,5 +1,5 @@
 import { UpperCasePipe } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-hero-page',
@@ -17,11 +17,16 @@ private PipoteName = 'Iroman';
   nuevoName = 'Spiderman';
   nuevoAge = 22;
 
-
+  heroDescription = computed(()=>{
+    const description = `${this.name}=${this.age}`
+    return description;
+  })
 
    getHeroDescription(){
     return `${ this.name } - ${ this.age }`;
    }
+
+   
 
    changeHero(){
     this.name.set(this.nuevoName);

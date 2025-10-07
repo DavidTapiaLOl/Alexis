@@ -1,17 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component,computed,signal,Signal } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,RouterModule],
   templateUrl: './usuario.component.html',
   styleUrl: './usuario.component.css'
 })
 export class UsuarioComponent {
-/*   nombre: string = 'Juan';
-  edad: number = 25;
-  nombreCapitalizado: string = this.nombre; */
 
   nombreSignal = signal('Juan');
   edadSignal = signal(25);
@@ -40,18 +38,7 @@ export class UsuarioComponent {
   }
 
   guardar() {
-    /* if (this.tipoModal === 'nombre' && this.nuevoNombre.trim() !== '') {
-      this.nombreSignal = this.nuevoNombre;
-      this.nombreCapitalizado = this.nuevoNombre.toUpperCase();
-    }
-
-    if (this.tipoModal === 'edad' && this.nuevaEdad !== null) {
-      this.edadSignal = this.nuevaEdad;
-    }
-
-    if (this.tipoModal === 'reset' && this.nuevoNombreCapitalizado.trim() !== '') {
-      this.nombreCapitalizadoSignal = this.nuevoNombreCapitalizado;
-    } */
+    
 
 
        if (this.tipoModal === 'nombre' && this.nuevoNombre.trim() !== '') {
